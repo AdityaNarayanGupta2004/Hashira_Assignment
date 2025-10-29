@@ -125,3 +125,52 @@ public class Hashira {
         return data;
     }
 }
+
+/*
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+import org.json.*;
+
+public class HashiraPolynomial {
+    public static void main(String[] args) {
+        try {
+            // Read JSON input
+            String content = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get("input.json")));
+            JSONObject obj = new JSONObject(content);
+
+            JSONObject keys = obj.optJSONObject("keys");
+            int n = keys.getInt("n");
+            int k = keys.getInt("k");
+            int degree = k - 1;
+
+            // Collect root keys
+            List<String> rootKeys = new ArrayList<>();
+            for (String key : obj.keySet()) {
+                if (!key.equals("keys")) rootKeys.add(key);
+            }
+            Collections.sort(rootKeys, Comparator.comparingInt(Integer::parseInt));
+
+            BigInteger product = BigInteger.ONE;
+
+            // Compute product of first degree roots
+            for (int i = 0; i < degree && i < rootKeys.size(); i++) {
+                JSONObject root = obj.getJSONObject(rootKeys.get(i));
+                int base = root.getInt("base");
+                String value = root.getString("value");
+                BigInteger rootVal = new BigInteger(value, base);
+                product = product.multiply(rootVal);
+            }
+
+            if (degree % 2 != 0) product = product.negate();
+
+            System.out.println("Total roots (n): " + n);
+            System.out.println("Polynomial degree (m): " + degree);
+            System.out.println("Constant term (c): " + product);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+*/
